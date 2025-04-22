@@ -14,7 +14,6 @@ use App\Http\Controllers\DevolucionesController;
 use App\Http\Controllers\ComputadorasController;
 use App\Http\Controllers\ReportesCNUController;
 use App\Http\Controllers\ReporteController;
-use App\Models\Devoluciones;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,11 +42,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/perfil/edit', [PerfilController::class, 'edit'])->name('perfil.edit');
     Route::post('/perfil/update', [PerfilController::class, 'update'])->name('perfil.update');
+    Route::get('/ayuda', [DashboardController::class, 'ayuda'])->name('ayuda');
+    Route::get('/politicas', [DashboardController::class, 'politicas'])->name('politicas');
+    Route::get('/terminos', [DashboardController::class, 'terminos'])->name('terminos');
+
 
     // Rutas para miembros / user
     Route::get('/buscar-miembro', [MiembrosController::class, 'buscarMiembro'])->name('miembros.buscarMiembro');
     Route::post('/registrar-miembro', [MiembrosController::class, 'registrarMiembro'])->name('miembros.registrarMiembro');
+    Route::get('/miembros/reportes', [MiembrosController::class, 'reportes'])->name('miembros.reportes');
+    Route::get('/buscar', [MiembrosController::class, 'buscarIngreso'])->name('miembros.buscar');
+    Route::get('/{id}/editar', [MiembrosController::class, 'edit'])->name('miembros.editar');
+    Route::put('/{id}', [MiembrosController::class, 'update'])->name('miembros.actualizar');
+    Route::delete('/{id}', [MiembrosController::class, 'destroy'])->name('miembros.eliminar');
     Route::get('/usuarios/listado', [UserController::class, 'listado']);
+
     
     // Rutas para libros
     Route::get('/libros', [LibroController::class, 'index'])->name('libros.index');
@@ -65,7 +74,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('control-servicios', [ServiciosController::class, 'services'])->name('servicios.services');
     Route::get('control-servicios', [ServiciosController::class, 'index'])->name('servicios.index');
     Route::get('/servicios/tipo/{id}', [ServiciosController::class, 'obtenerTipoPrestamo'])->name('servicios.tipo');
-   
+    Route::get('/reportes', [ServiciosController::class, 'reportes'])->name('servicios.reportes');
+    Route::get('/editar/{id}', [ServiciosController::class, 'edit'])->name('servicios.editar');
+    Route::put('/actualizar/{id}', [ServiciosController::class, 'update'])->name('servicios.actualizar');
+    Route::delete('/eliminar/{id}', [ServiciosController::class, 'destroy'])->name('servicios.eliminar');
+    Route::get('/buscar', [ServiciosController::class, 'buscarServicio'])->name('servicios.buscar');
 
     // Rutas para computadoras
     Route::get('/buscar-computadoras', [ComputadorasController::class, 'buscarComputadoras']);

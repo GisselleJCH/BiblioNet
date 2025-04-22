@@ -11,7 +11,7 @@
     <p class="text-muted">Formulario para editar un libro</p>
     <hr>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -21,6 +21,8 @@
                 <form method="POST" action="{{ route('libros.update', $libro->id) }}">
                     @csrf
                     @method('PUT')
+
+                    <!-- Primera fila: Título y Signatura Topográfica -->
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label for="titulo" class="col-form-label fw-bold">Título</label>
@@ -42,6 +44,7 @@
                         </div>
                     </div>
 
+                    <!-- Segunda fila: Autor y Cantidad -->
                     <div class="form-group row mt-3">
                         <div class="col-md-6">
                             <label for="autor" class="col-form-label fw-bold">Autor</label>
@@ -63,6 +66,7 @@
                         </div>
                     </div>
 
+                    <!-- Tercera fila: Categoría -->
                     <div class="form-group row mt-3">
                         <div class="col-md-6">
                             <label for="categoria" class="col-form-label fw-bold">Categoría</label>
@@ -84,6 +88,7 @@
                         </div>
                     </div>
 
+                    <!-- Botones: Cancelar y Actualizar -->
                     <div class="form-group row mt-4 justify-content-end">
                         <div class="col-md-2">
                             <a href="{{ route('libros.reportes') }}" class="btn boton_cancelar w-100">Cancelar</a>
@@ -97,6 +102,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 <!-- Validación de errores -->

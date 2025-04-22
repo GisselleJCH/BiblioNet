@@ -15,7 +15,7 @@
     <p class="text-muted">Registra devoluciones de préstamos de libros y computadoras</p>
     <hr>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-md-12">
                             <label for="observaciones" class="col-form-label fw-bold">Observaciones</label>
-                            <textarea id="observaciones" class="form-control" name="observaciones" rows="3" placeholder="Escribe observaciones (opcional)"></textarea>
+                            <textarea id="observaciones" class="form-control" name="observaciones" rows="3" placeholder="Escribe observaciones"></textarea>
                         </div>
                     </div>
                     <div class="form-group row mt-4 justify-content-end">

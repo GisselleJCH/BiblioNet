@@ -46,4 +46,18 @@ class DashboardController extends Controller
             'prestamosAuditorio'
         ));
     }
+
+    public function ayuda()
+    {
+        return view('modules.dashboard.ayuda');
+    }
+
+    public function politicas()
+    {
+        return view('modules.dashboard.politicas');
+    }
+    public function terminos()
+    {
+        return view('modules.dashboard.terminos');
+    }
 }

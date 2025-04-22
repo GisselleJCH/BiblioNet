@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <script type="text/javascript" src="{{ asset('js/scripts.js') }}" defer></script>
     
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/LogoBlanco.png') }}">
     <title>@yield('titulo_pagina')</title>
     
 </head>
@@ -35,8 +36,8 @@
                 <li><a class="dropdown-item" href="{{ route('perfil.edit') }}">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}">Salir</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Políticas de Privacidad</a></li>
-                <li><a class="dropdown-item" href="#">Términos de Servicios</a></li>
+                <li><a class="dropdown-item" href="{{ route('politicas') }}">Políticas de Privacidad</a></li>
+                <li><a class="dropdown-item" href="{{ route('terminos') }}">Términos de Servicio</a></li>
             </ul>
         </div>
     </header>
@@ -94,8 +95,8 @@
                         </svg>
                     </button>
                     <ul class="sub-menu">
-                        <li><a href="#" class="text-submenu">Reportes Ingresos</a></li>
-                        <li><a href="#" class="text-submenu">Reportes Control Servicios</a></li>
+                        <li><a href="{{ route('miembros.reportes') }}" class="text-submenu">Reportes Ingresos</a></li>
+                        <li><a href="{{ route('servicios.reportes') }}" class="text-submenu">Reportes Control Servicios</a></li>
                         <li><a href="{{ route('libros.reportes') }}" class="text-submenu">Reportes Libros</a></li>
                         <li><a href="{{ route('computadoras.reportes') }}" class="text-submenu">Reportes Computadoras</a></li>
                         <li><a href="#" class="text-submenu">Reportes Devoluciones</a></li>
@@ -131,7 +132,7 @@
                 <p class="title-sidebar">Cuenta</p>
                 <ul class="menu">
                     <li>
-                        <a href="#" class="dropdown-btn">
+                        <a href="{{ route('ayuda') }}" class="dropdown-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle icon-new" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                             <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>

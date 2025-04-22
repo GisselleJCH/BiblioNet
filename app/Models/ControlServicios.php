@@ -32,7 +32,7 @@ class ControlServicios extends Model
         return $this->belongsTo(Miembros::class, 'miembro_id');
     }
 
-    public function usuario()
+    public function user()
     {
         return $this->belongsTo(User::class, 'atendido_por');
     }

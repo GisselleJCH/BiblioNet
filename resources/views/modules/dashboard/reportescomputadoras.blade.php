@@ -12,7 +12,7 @@
     <p class="text-muted">Listado de Computadoras</p>
     <hr>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}

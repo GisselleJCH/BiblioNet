@@ -11,7 +11,7 @@
     <p class="text-muted">Registro de Computadoraa</p>
     <hr>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}

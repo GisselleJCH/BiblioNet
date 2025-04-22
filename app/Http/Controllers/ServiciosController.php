@@ -122,4 +122,65 @@ class ServiciosController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Servicio no encontrado']);
     }
+
+
+    //reportes
+    public function reportes()
+    {
+        // Carga los servicios con las relaciones necesarias
+        $servicio = ControlServicios::with(['miembro', 'computadora', 'libro', 'user'])->get();
+        return view('modules.dashboard.reportesservicios', compact('servicio'));
+    }
+
+    public function edit($id)
+    {
+        $servicio = ControlServicios::findOrFail($id);
+        return view('modules.dashboard.editservicio', compact('servicio'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'miembro_id' => 'required|exists:miembros,id',
+            'ingreso' => 'nullable|date',
+            'numero_locker' => 'nullable|string|max:255',
+            'sala_atencion' => 'required|string|max:255',
+            'tipo_servicio' => 'required|string|max:255',
+            'computadora_id' => 'nullable|exists:computadoras,id', 
+            'libro_id' => 'nullable|exists:libros,id',
+            'fecha_devolucion' => 'nullable|date',
+            'atendido_por' => 'required|exists:users,id',
+        ]);
+
+        $servicio = ControlServicios::findOrFail($id);
+        $servicio->update($validatedData);
+
+        return redirect()->route('servicios.reportes')->with('success', 'Control de Servicio actualizado correctamente.');
+    }
+
+    public function destroy($id)
+    {
+        $servicio = ControlServicios::findOrFail($id);
+        $servicio->delete();
+
+        return redirect()->route('servicios.reportes')->with('success', 'Control de Servicio eliminado correctamente.');
+    }
+
+    public function buscarServicio(Request $request)
+    {
+        $query = $request->input('query');
+        $servicio = ControlServicios::where('carnet', 'LIKE', "%{$query}%")->pluck('carnet');
+
+        if ($servicio->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No se encontraron control de servicios con el carnet proporcionado.',
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'servicios' => $servicio,
+        ]);
+    }
 }

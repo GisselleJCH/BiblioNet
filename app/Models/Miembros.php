@@ -21,4 +21,9 @@ class Miembros extends Model
         'sede',
         'tipo_miembro',
     ];
+
+    public function servicios()
+    {
+        return $this->hasMany(ControlServicios::class, 'miembro_id');
+    }
 }
