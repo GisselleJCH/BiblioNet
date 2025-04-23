@@ -18,4 +18,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
+
+    // Confirmación antes de eliminar un registro
+    const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+    botonesEliminar.forEach(function (boton) {
+        boton.addEventListener("click", function (evento) {
+            const confirmacion = confirm("¿Estás seguro de que deseas eliminar este registro?");
+            if (!confirmacion) {
+                evento.preventDefault(); // Cancelar la acción de eliminación
+            }
+        });
+    });
 });
