@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputBuscar = document.getElementById("buscaringresos");
     const tablaIngresos = document.getElementById("tabla-ingresos");
 
+    // Filtrar registros en la tabla
     inputBuscar.addEventListener("keyup", function () {
         const filtro = inputBuscar.value.toLowerCase();
         const filas = tablaIngresos.getElementsByTagName("tr");
@@ -17,5 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
         }
+    });
+
+    // Confirmación antes de eliminar un registro
+    const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+    botonesEliminar.forEach(function (boton) {
+        boton.addEventListener("click", function (evento) {
+            const confirmacion = confirm("¿Estás seguro de que deseas eliminar este registro?");
+            if (!confirmacion) {
+                evento.preventDefault(); // Cancelar la acción de eliminación
+            }
+        });
     });
 });

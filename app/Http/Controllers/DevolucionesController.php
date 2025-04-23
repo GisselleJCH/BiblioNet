@@ -99,4 +99,76 @@ class DevolucionesController extends Controller
 
         return redirect()->route('devoluciones.index')->with('success', 'Devolución registrada correctamente.');
     }
+
+    //reportes
+    public function reportes()
+    {
+        // Carga las devoluciones con las relaciones necesarias
+        $devoluciones = Devoluciones::with(['miembro', 'control_servicio', 'user'])->get();
+
+        // Retorna la vista con los datos
+        return view('modules.dashboard.reportesdevoluciones', compact('devoluciones'));
+    }
+
+    public function editdevoluciones($id)
+    {
+        $devolucion = Devoluciones::findOrFail($id);
+        $controlServicios = ControlServicios::with(['miembro', 'user'])->get();
+
+        return view('modules.dashboard.editdevoluciones', compact('devolucion', 'controlServicios'));
+    }
+
+    public function updatedevoluciones(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'miembro_id' => 'required|exists:miembros,id',
+            'fecha_devolucion' => 'nullable|date',
+            'usuario_atendio' => 'required|exists:users,id',
+            'control_servicio_id' => 'required|exists:control_servicios,id',
+            'signatura_topografica' => 'nullable|string|max:255',
+            'codigo_computadora' => 'nullable|string|max:255',
+            'cantidad' => 'required|integer|min:1',
+            'estado' => 'required|in:devuelto,extraviado,dañado',
+            'observaciones' => 'nullable|string|max:255',
+            'tipo_servicio' => 'required|string',
+        ]);
+
+        $devoluciones = Devoluciones::findOrFail($id);
+        $devoluciones->update($validatedData);
+
+        return redirect()->route('reportes.devoluciones')->with('success', 'Devoluciones actualizada correctamente.');
+    }
+
+    public function destroy($id)
+    {
+        $devolucion = Devoluciones::findOrFail($id);
+    
+        // Elimina el registro relacionado en control_servicios
+        if ($devolucion->control_servicio) {
+            $devolucion->control_servicio->delete();
+        }
+    
+        // Elimina la devolución
+        $devolucion->delete();
+    
+        return redirect()->route('reportes.devoluciones')->with('success', 'Devolución y su control de servicio eliminados correctamente.');
+    }
+
+    public function buscarDevoluciones(Request $request)
+    {
+        $query = $request->input('query');
+        $devoluciones = Devoluciones::where('carnet', 'LIKE', "%{$query}%")->pluck('carnet');
+
+        if ($devoluciones->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No se encontraron devoluciones con el carnet proporcionado.',
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'devoluciones' => $devoluciones,
+        ]);
+    }
 }

@@ -17,15 +17,21 @@
                 </div>
             @endif
             <div class="fondo p-4">
-                <form method="POST" action="{{ route('servicios.editar', $servicio->id) }}">
+                <form method="POST" action="{{ route('servicios.actualizar', $servicio->id) }}">
                     @csrf
                     @method('PUT')
 
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="miembro_id" class="col-form-label fw-bold">Carnet</label>
-                            <input id="miembro_id" type="text" class="form-control @error('miembro_id') is-invalid @enderror" 
-                                name="miembro_id" value="{{ $servicio->miembro->carnet ?? 'N/A' }}" required>
+                    <div class="form-group row mt-3">
+                    <div class="col-md-6">
+                        <label for="miembro_id" class="col-form-label fw-bold">Carnet</label>
+                            <select id="miembro_id" class="form-control @error('miembro_id') is-invalid @enderror" name="miembro_id" required>
+                                <option value="">Seleccionar</option>
+                                @foreach ($miembros as $miembro)
+                                    <option value="{{ $miembro->id }}" {{ $servicio->miembro_id == $miembro->id ? 'selected' : '' }}>
+                                        {{ $miembro->carnet }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('miembro_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -94,8 +100,14 @@
 
                         <div class="col-md-6">
                             <label for="computadora_id" class="col-form-label fw-bold">Código de Computadora</label>
-                            <input id="computadora_id" type="text" class="form-control @error('computadora_id') is-invalid @enderror" 
-                                name="computadora_id" value="{{ $servicio->computadora->codigo_computadora ?? 'N/A' }}" required>
+                            <select id="computadora_id" class="form-control @error('computadora_id') is-invalid @enderror" name="computadora_id">
+                                <option value="">Seleccionar</option>
+                                @foreach ($computadoras as $computadora)
+                                    <option value="{{ $computadora->id }}" {{ $servicio->computadora_id == $computadora->id ? 'selected' : '' }}>
+                                        {{ $computadora->codigo_computadora }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('computadora_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -107,8 +119,14 @@
                     <div class="form-group row mt-3">
                         <div class="col-md-6">
                             <label for="libro_id" class="col-form-label fw-bold">Signatura Topográfica</label>
-                            <input id="libro_id" type="text" class="form-control @error('libro_id') is-invalid @enderror" 
-                                name="libro_id" value="{{ $servicio->libro->signatura_topografica ?? 'N/A' }}" required>
+                            <select id="libro_id" class="form-control @error('libro_id') is-invalid @enderror" name="libro_id">
+                                <option value="">Seleccionar</option>
+                                @foreach ($libros as $libro)
+                                    <option value="{{ $libro->id }}" {{ $servicio->libro_id == $libro->id ? 'selected' : '' }}>
+                                        {{ $libro->signatura_topografica }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('libro_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -130,8 +148,14 @@
                     <div class="form-group row mt-3">
                         <div class="col-md-6">
                             <label for="atendido_por" class="col-form-label fw-bold">Atendido Por</label>
-                            <input id="atendido_por" type="text" class="form-control @error('atendido_por') is-invalid @enderror" 
-                                name="atendido_por" value="{{ $servicio->user->name ?? 'N/A' }}" required>
+                            <select id="atendido_por" class="form-control @error('atendido_por') is-invalid @enderror" name="atendido_por" required>
+                                <option value="">Seleccionar</option>
+                                @foreach ($usuarios as $usuario)
+                                    <option value="{{ $usuario->id }}" {{ $servicio->atendido_por == $usuario->id ? 'selected' : '' }}>
+                                        {{ $usuario->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('atendido_por')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

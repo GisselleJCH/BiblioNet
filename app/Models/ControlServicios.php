@@ -46,4 +46,9 @@ class ControlServicios extends Model
     {
         return $this->belongsTo(Computadoras::class, 'computadora_id');
     }
+    
+    public function devolucion()
+    {
+        return $this->hasOne(Devoluciones::class, 'control_servicio_id');
+    }
 }

@@ -135,7 +135,12 @@ class ServiciosController extends Controller
     public function edit($id)
     {
         $servicio = ControlServicios::findOrFail($id);
-        return view('modules.dashboard.editservicio', compact('servicio'));
+        $miembros = Miembros::all();
+        $computadoras = Computadoras::all();
+        $libros = Libros::all();
+        $usuarios = User::all();
+    
+        return view('modules.dashboard.editservicio', compact('servicio', 'miembros', 'computadoras', 'libros', 'usuarios'));
     }
 
     public function update(Request $request, $id)

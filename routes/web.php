@@ -69,12 +69,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/devoluciones', [DevolucionesController::class, 'index'])->name('devoluciones.index');
     Route::post('/registrar-devolucion', [DevolucionesController::class, 'store'])->name('devoluciones.store');
     Route::post('/prestamos/obtener', [DevolucionesController::class, 'obtenerPrestamos'])->name('prestamos.obtener');
-    
+    Route::get('/reportesdevoluciones', [DevolucionesController::class, 'reportes'])->name('reportes.devoluciones');
+    Route::get('/editardevoluciones/{id}', [DevolucionesController::class, 'editdevoluciones'])->name('devoluciones.editar');
+    Route::put('/actualizardevoluciones/{id}', [DevolucionesController::class, 'updatedevoluciones'])->name('devoluciones.actualizar');
+    Route::delete('/eliminardevoluciones/{id}', [DevolucionesController::class, 'destroy'])->name('devoluciones.eliminar');
+    Route::get('/buscardevoluciones', [DevolucionesController::class, 'buscarDevoluciones'])->name('devoluciones.buscar');
+
     // Rutas para control de servicios
     Route::post('control-servicios', [ServiciosController::class, 'services'])->name('servicios.services');
     Route::get('control-servicios', [ServiciosController::class, 'index'])->name('servicios.index');
     Route::get('/servicios/tipo/{id}', [ServiciosController::class, 'obtenerTipoPrestamo'])->name('servicios.tipo');
-    Route::get('/reportes', [ServiciosController::class, 'reportes'])->name('servicios.reportes');
+    Route::get('/reportesservicios', [ServiciosController::class, 'reportes'])->name('servicios.reportes');
     Route::get('/editar/{id}', [ServiciosController::class, 'edit'])->name('servicios.editar');
     Route::put('/actualizar/{id}', [ServiciosController::class, 'update'])->name('servicios.actualizar');
     Route::delete('/eliminar/{id}', [ServiciosController::class, 'destroy'])->name('servicios.eliminar');

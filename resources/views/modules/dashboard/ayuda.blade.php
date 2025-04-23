@@ -41,7 +41,7 @@
 
                 <h4 class="fw-bold">¿Cómo registrar una devolución?</h4>
                 <p>1. Accede a la sección "Devoluciones".</p>
-                <p>2. Ingresa la información requerida, con el carnet y el tipo de préstamo que hizo aparecera ya sea el código de computadora o la signatura topográfica.</p>
+                <p>2. Ingresa la información requerida, con el carnet y el tipo de préstamo que hizo aparecerá ya sea el código de computadora o la signatura topográfica.</p>
                 <p>3. Verifica los datos y confirma la devolución.</p>
 
                 <h4 class="fw-bold">¿Cómo generar reportes?</h4>

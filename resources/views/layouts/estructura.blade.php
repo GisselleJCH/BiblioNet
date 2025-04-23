@@ -77,9 +77,9 @@
                     </button>
                     <ul class="sub-menu">
                         <li><a href="{{ route('servicios.index') }}" class="text-submenu">Control Ingresos y Servicios</a></li>
+                        <li><a href="{{ route('devoluciones.index') }}" class="text-submenu">Devoluciones</a></li>
                         <li><a href="{{ route('libros.index') }}" class="text-submenu">Libros</a></li>
                         <li><a href="{{ route('computadoras.index') }}" class="text-submenu">Computadoras</a></li>
-                        <li><a href="{{ route('devoluciones.index') }}" class="text-submenu">Devoluciones</a></li>
                     </ul>
                 </li>
 
@@ -99,7 +99,7 @@
                         <li><a href="{{ route('servicios.reportes') }}" class="text-submenu">Reportes Control Servicios</a></li>
                         <li><a href="{{ route('libros.reportes') }}" class="text-submenu">Reportes Libros</a></li>
                         <li><a href="{{ route('computadoras.reportes') }}" class="text-submenu">Reportes Computadoras</a></li>
-                        <li><a href="#" class="text-submenu">Reportes Devoluciones</a></li>
+                        <li><a href="{{ route('reportes.devoluciones') }}" class="text-submenu">Reportes Devoluciones</a></li>
                         @if (Auth::user()->role === 'Administrador')
                             <li><a href="{{ route('reportes.biblioteca') }}" class="text-submenu">Reportes Biblioteca</a></li>
                             <li><a href="{{ route('reportes.cnu') }}" class="text-submenu">Reportes CNU</a></li>
