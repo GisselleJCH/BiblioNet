@@ -36,7 +36,8 @@
                             <th>Carrera</th>
                             <th>Sede</th>
                             <th>Tipo de Miembro</th>
-                            <th>Acciones</th> <!-- Nueva columna para Acciones -->
+                            <th>Teléfono</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="tabla-ingresos">
@@ -52,6 +53,7 @@
                                 <td>{{ $miembro->carrera }}</td>
                                 <td>{{ $miembro->sede }}</td>
                                 <td>{{ $miembro->tipo_miembro }}</td>
+                                <td>{{ $miembro->telefono }}</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         <!-- Botón Editar -->

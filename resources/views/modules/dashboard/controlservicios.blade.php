@@ -83,20 +83,24 @@
 
                     <div class="form-group row mt-3">
                         <div class="col-md-6">
+                            <label for="telefono" class="col-form-label fw-bold">Teléfono</label>
+                            <input id="telefono" type="text" class="form-control" name="telefono" readonly>
+                        </div>
+                        <div class="col-md-6">
                             <label for="ingreso" class="col-form-label fw-bold">Ingreso</label>
                             <input id="ingreso" type="text" class="form-control" name="ingreso" value="{{ now() }}" readonly>
                         </div>
-                        <div class="col-md-6">
-                            <label for="numero_locker" class="col-form-label fw-bold">Número de Locker</label>
-                            <select id="numero_locker" class="form-control" name="numero_locker">
-                                <option value="">Seleccionar</option>
-                                @for ($i = 1; $i <= 10; $i++)
-                                    <option value="{{ $i }}">{{ $i }}</option>
-                                @endfor
-                            </select>
-                        </div>
                     </div>
                         <div class="form-group row mt-3">
+                            <div class="col-md-6">
+                                <label for="numero_locker" class="col-form-label fw-bold">Número de Locker</label>
+                                <select id="numero_locker" class="form-control" name="numero_locker">
+                                    <option value="">Seleccionar</option>
+                                    @for ($i = 1; $i <= 20; $i++)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
                              <div class="col-md-6">
                                 <label for="sala_atencion" class="col-form-label fw-bold">Sala de Atención</label>
                                 <select id="sala_atencion" class="form-control" name="sala_atencion" required>
@@ -109,7 +113,11 @@
                                     <option value="Auditorio">Auditorio</option>
                                 </select>
                             </div>
-                        
+                        </div>
+
+                    <div class="form-group row mt-3" id="extra-fields">
+                    </div>
+                    <div class="form-group row mt-2">
                             <div class="col-md-6">
                                 <label for="tipo_servicio" class="col-form-label fw-bold">Tipo de Servicio</label>
                                 <select id="tipo_servicio" class="form-control" name="tipo_servicio" required>
@@ -121,14 +129,10 @@
                                     <option value="Entrega de solvencia">Entrega de solvencia</option>
                                     <option value="Usuario con suscripción">Usuario con suscripción</option>
                                     <option value="Capacitación a Usuarios">Capacitación a Usuarios</option>
+                                    <option value="Capacitación a Usuarios">Atención de Usuario (Recepción)</option>
                                 </select>
                             </div>
-                        </div>
-
-                    <div class="form-group row mt-3" id="extra-fields">
-                    </div>
-                    <div class="form-group row mt-2">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="usuario_atendio" class="col-form-label fw-bold">Atendido por</label>
                                 <select id="usuario_atendio" class="form-control" name="usuario_atendio" required>
                                     <option value="">Seleccionar</option>
@@ -195,7 +199,7 @@
                                     <option value="Dirección Educación, Arte y Humanidades">Dirección Educación, Arte y Humanidades</option>
                                     <option value="Dirección Ciencias de la Salud">Dirección Ciencias de la Salud</option>
                                     <option value="Dirección Ciencias Básicas y Tecnología">Dirección Ciencias Básicas y Tecnología</option>
-                                    <option value="Dirección Ciencias Sociales, Económicas Administrativas y Ciencias Jurídicas">Dirección Ciencias Sociales, Económicas Administrativas y Ciencias Jurídicas</option>
+                                    <option value="Dirección Ciencias Sociales, Económicas Administrativas y Jurídicas">Dirección Ciencias Sociales, Económicas Administrativas y Jurídicas</option>
                                 </select>
                             </div>
                         </div>
@@ -265,13 +269,21 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label for="modal-tipo_miembro" class="col-form-label fw-bold">Tipo de Miembro:</label>
-                                <select class="form-control" id="modal-tipo_miembro" name="tipo_miembro" required>
-                                    <option value="">Seleccionar</option>
-                                    <option value="Estudiante">Estudiante</option>
-                                    <option value="Maestro">Maestro</option>
-                                </select>
+                            <div class="form-group mb-3">
+                                <label for="modal-tipo_miembro" class="col-form-label fw-bold">Tipo de Miembro:</label>
+                                    <select class="form-control" id="modal-tipo_miembro" name="tipo_miembro" required>
+                                        <option value="">Seleccionar</option>
+                                        <option value="Estudiante">Estudiante</option>
+                                        <option value="Docente">Docente</option>
+                                        <option value="Personal Administrativo">Personal Administrativo</option>
+                                    </select>
+                                </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="modal-telefono" class="col-form-label fw-bold">Teléfono:</label>
+                                <input type="text" class="form-control" id="modal-telefono" name="telefono" placeholder="Teléfono" required>
                             </div>
                         </div>
                     </div>

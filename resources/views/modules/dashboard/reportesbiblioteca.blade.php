@@ -10,6 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
 <div class="container mt-4">
     <h2 class="fw-bold" style="color: #001C7D;">Reportes Biblioteca</h2>
@@ -45,19 +46,19 @@
     <div class="row mb-4 text-center">
         <div class="col-md-4">
             <div class="informativas p-3 bg-white">
-                <h1 id="total-estudiantes" class="mb-0 fw-bold">0</h1>
+                <h1 id="total-estudiantes" class="mb-0 fw-bold" style="color: #001C7D;"></h1>
                 <p class="mb-0">Estudiantes</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="informativas p-3 bg-white">
-                <h1 id="total-maestros" class="mb-0 fw-bold">0</h1>
-                <p class="mb-0">Maestros</p>
+                <h1 id="total-docentes" class="mb-0 fw-bold" style="color: #001C7D;"></h1>
+                <p class="mb-0">Docentes</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="informativas p-3 bg-white">
-                <h1 id="total-servicios" class="mb-0 fw-bold">0</h1>
+                <h1 id="total-servicios" class="mb-0 fw-bold" style="color: #001C7D;"></h1>
                 <p class="mb-0">Servicios</p>
             </div>
         </div>
@@ -78,6 +79,26 @@
         <div class="col-md-12">
             <div class="p-3 informativas bg-white">
                 <canvas id="grafico-area-conocimiento" height="120"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 informativas bg-white">
+                <canvas id="grafico-sala-atencion" width="400" height="200"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 informativas bg-white">
+                <canvas id="grafico-carrera" width="400" height="200"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 informativas bg-white">
+                <canvas id="grafico-turno" width="400" height="250"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 informativas bg-white">
+                <canvas id="grafico-sede" width="400" height="250"></canvas>
             </div>
         </div>
     </div>
@@ -105,6 +126,7 @@
                     <th>Carrera</th>
                     <th>Sede</th>
                     <th>Tipo de Miembro</th>
+                    <th>Teléfono</th>
                     <th>Ingreso</th>
                     <th>Número de Locker</th>
                     <th>Sala de Atención</th>

@@ -51,6 +51,7 @@
                     <th>Carrera</th>
                     <th>Sede</th>
                     <th>Tipo de Miembro</th>
+                    <th>Teléfono</th>
                     <th>Ingreso</th>
                     <th>Número de Locker</th>
                     <th>Sala de Atención</th>

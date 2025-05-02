@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class MiembrosController extends Controller
 {
-    // Método para buscar miembros por carnet o nombre
+    // Método para buscar miembros por carnet
     public function buscarMiembro(Request $request)
     {
         $query = $request->get('carnet');
@@ -29,6 +29,7 @@ class MiembrosController extends Controller
             'area_conocimiento' => 'required|string',
             'sede' => 'required|string',
             'tipo_miembro' => 'required|string',    
+            'telefono' => 'nullable|string|max:20',
         ]);
 
         $miembro = Miembros::create($validatedData);
@@ -61,6 +62,7 @@ class MiembrosController extends Controller
             'area_conocimiento' => 'required|string|max:100',
             'sede' => 'required|string|max:100',
             'tipo_miembro' => 'required|string|max:50',
+            'telefono' => 'nullable|string|max:20',
         ]);
 
         $miembro = Miembros::findOrFail($id);

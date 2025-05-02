@@ -22,7 +22,6 @@ return new class extends Migration
             $table->enum('sexo', ['Masculino', 'Femenino']);
             $table->string('area_conocimiento', 100);
             $table->string('sede', 100);
-            $table->enum('tipo_miembro', ['Estudiante', 'Maestro']);
             $table->timestamps();
         });
     }

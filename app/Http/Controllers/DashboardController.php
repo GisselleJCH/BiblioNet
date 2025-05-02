@@ -28,7 +28,7 @@ class DashboardController extends Controller
         ])->count();
 
         // Contar estudiantes registrados
-        $estudiantesRegistrados = Miembros::count();
+        $estudiantesRegistrados = Miembros::where('tipo_miembro', 'Estudiante')->count();
 
         // Contar préstamos de PC
         $prestamosPC = ControlServicios::where('tipo_servicio', 'Préstamo de Computadora')->count();

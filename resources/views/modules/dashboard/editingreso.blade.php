@@ -69,7 +69,7 @@
                                 <option value="Dirección Educación, Arte y Humanidades" {{ old('area_conocimiento', $miembros->area_conocimiento) == 'Dirección Educación, Arte y Humanidades' ? 'selected' : '' }}>Dirección Educación, Arte y Humanidades</option>
                                 <option value="Dirección Ciencias de la Salud" {{ old('area_conocimiento', $miembros->area_conocimiento) == 'Dirección Ciencias de la Salud' ? 'selected' : '' }}>Dirección Ciencias de la Salud</option>
                                 <option value="Dirección Ciencias Básicas y Tecnología" {{ old('area_conocimiento', $miembros->area_conocimiento) == 'Dirección Ciencias Básicas y Tecnología' ? 'selected' : '' }}>Dirección Ciencias Básicas y Tecnología</option>
-                                <option value="Dirección Ciencias Sociales, Económicas Administrativas y Ciencias Jurídicas" {{ old('area_conocimiento', $miembros->area_conocimiento) == 'Dirección Ciencias Sociales, Económicas Administrativas y Ciencias Jurídicas' ? 'selected' : '' }}>Dirección Ciencias Sociales, Económicas Administrativas y Ciencias Jurídicas</option>
+                                <option value="Dirección Ciencias Sociales, Económicas Administrativas y Jurídicas" {{ old('area_conocimiento', $miembros->area_conocimiento) == 'Dirección Ciencias Sociales, Económicas Administrativas y Jurídicas' ? 'selected' : '' }}>Dirección Ciencias Sociales, Económicas Administrativas y Jurídicas</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -113,8 +113,16 @@
                             <label for="tipo_miembro" class="col-form-label fw-bold">Tipo de Miembro</label>
                             <select class="form-control" id="tipo_miembro" name="tipo_miembro" required>
                                 <option value="Estudiante" {{ old('tipo_miembro', $miembros->tipo_miembro) == 'Estudiante' ? 'selected' : '' }}>Estudiante</option>
-                                <option value="Maestro" {{ old('tipo_miembro', $miembros->tipo_miembro) == 'Maestro' ? 'selected' : '' }}>Maestro</option>
+                                <option value="Docente" {{ old('tipo_miembro', $miembros->tipo_miembro) == 'Docente' ? 'selected' : '' }}>Docente</option>
+                                <option value="Personal Administrativo" {{ old('tipo_miembro', $miembros->tipo_miembro) == 'Personal Administrativo' ? 'selected' : '' }}>Personal Administrativo</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mt-3">
+                        <div class="col-md-6">
+                            <label for="telefono" class="col-form-label fw-bold">Teléfono</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono', $miembros->telefono) }}" required>
                         </div>
                     </div>
 

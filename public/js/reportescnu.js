@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <td>${reporte.carrera}</td>
                                 <td>${reporte.sede}</td>
                                 <td>${reporte.tipo_miembro}</td>
+                                <td>${reporte.telefono}</td>
                                 <td>${reporte.ingreso}</td>
                                 <td>${reporte.numero_locker}</td>
                                 <td>${reporte.sala_atencion}</td>

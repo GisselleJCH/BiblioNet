@@ -33,6 +33,10 @@ class ReporteController extends Controller
             'graficoSexo' => public_path('storage/graficos/grafico-sexo.png'),
             'graficoTipoServicio' => public_path('storage/graficos/grafico-tipo-servicio.png'),
             'graficoAreaConocimiento' => public_path('storage/graficos/grafico-area-conocimiento.png'),
+            'graficoSalaAtencion' => public_path('storage/graficos/grafico-sala-atencion.png'),
+            'graficoCarrera' => public_path('storage/graficos/grafico-carrera.png'),
+            'graficoTurno' => public_path('storage/graficos/grafico-turno.png'),
+            'graficoSede' => public_path('storage/graficos/grafico-sede.png'),
         ];
 
         foreach ($imagenes as $key => $path) {
@@ -67,6 +71,10 @@ class ReporteController extends Controller
             'graficoSexo' => public_path('storage/graficos/grafico-sexo.png'),
             'graficoTipoServicio' => public_path('storage/graficos/grafico-tipo-servicio.png'),
             'graficoAreaConocimiento' => public_path('storage/graficos/grafico-area-conocimiento.png'),
+            'graficoSalaAtencion' => public_path('storage/graficos/grafico-sala-atencion.png'),
+            'graficoCarrera' => public_path('storage/graficos/grafico-carrera.png'),
+            'graficoTurno' => public_path('storage/graficos/grafico-turno.png'),
+            'graficoSede' => public_path('storage/graficos/grafico-sede.png'),
         ];
 
         // Generar el PDF con los datos de los gráficos y las imágenes
@@ -86,7 +94,7 @@ class ReporteController extends Controller
             ->leftJoin('devoluciones', 'control_servicios.id', '=', 'devoluciones.control_servicio_id') // Cambiado a LEFT JOIN
             ->leftJoin('users', 'control_servicios.atendido_por', '=', 'users.id') // Cambiado a LEFT JOIN
             ->select(
-                'control_servicios.*', // Seleccionar todas las columnas de control_servicios
+                'control_servicios.*',
                 'miembros.carnet',
                 'miembros.nombres',
                 'miembros.apellidos',
@@ -97,6 +105,7 @@ class ReporteController extends Controller
                 'miembros.carrera',
                 'miembros.sede',
                 'miembros.tipo_miembro',
+                'miembros.telefono',
                 DB::raw("
                     CASE 
                         WHEN control_servicios.tipo_servicio IN ('Lectura de Material Bibliográfico en Físico', 'Préstamo de Material Bibliográfico a domicilio') 
@@ -133,7 +142,7 @@ class ReporteController extends Controller
         // Totales basados en los reportes filtrados
         $totales = [
             'estudiantes' => $reportes->where('tipo_miembro', 'Estudiante')->unique('miembro_id')->count(), // Estudiantes únicos
-            'maestros' => $reportes->where('tipo_miembro', 'Maestro')->unique('miembro_id')->count(),       // Maestros únicos
+            'docentes' => $reportes->where('tipo_miembro', 'Docente')->unique('miembro_id')->count(),       // Maestros únicos
             'servicios' => $reportes->count(),  // Total de servicios registrados
         ];
 
@@ -154,6 +163,22 @@ class ReporteController extends Controller
                 'labels' => $reportes->groupBy('tipo_servicio')->keys()->toArray(),
                 'data' => $reportes->groupBy('tipo_servicio')->map->count()->values()->toArray(),
             ],
+            'sala_atencion' => [
+                'labels' => $reportes->groupBy('sala_atencion')->keys()->toArray(),
+                'data' => $reportes->groupBy('sala_atencion')->map->count()->values()->toArray(),
+            ],
+            'carrera' => [
+                'labels' => $reportes->groupBy('carrera')->keys()->toArray(),
+                'data' => $reportes->groupBy('carrera')->map->count()->values()->toArray(),
+            ],
+            'turno' => [
+                'labels' => $reportes->groupBy('turno')->keys()->toArray(),
+                'data' => $reportes->groupBy('turno')->map->count()->values()->toArray(),
+            ],
+            'sede' => [
+                'labels' => $reportes->groupBy('sede')->keys()->toArray(),
+                'data' => $reportes->groupBy('sede')->map->count()->values()->toArray(),
+            ],
         ];
 
         // Retornar los datos en formato JSON
@@ -162,6 +187,10 @@ class ReporteController extends Controller
             'area_conocimiento' => $graficos['area_conocimiento'],
             'sexo' => $graficos['sexo'],
             'tipo_servicio' => $graficos['tipo_servicio'],
+            'sala_atencion' => $graficos['sala_atencion'],
+            'carrera' => $graficos['carrera'],
+            'turno' => $graficos['turno'],
+            'sede' => $graficos['sede'],
         ]);
     }
 

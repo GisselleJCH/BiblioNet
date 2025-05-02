@@ -33,6 +33,7 @@ class ReportesCNUController extends Controller
                 'miembros.carrera',
                 'miembros.sede',
                 'miembros.tipo_miembro',
+                'miembros.telefono',
                 DB::raw("
                     CASE 
                         WHEN control_servicios.tipo_servicio IN ('Lectura de Material Bibliográfico en Físico', 'Préstamo de Material Bibliográfico a domicilio') 

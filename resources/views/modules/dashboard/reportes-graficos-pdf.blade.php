@@ -24,7 +24,12 @@
 </head>
 <body>
     <h1>Reporte de Gráficos Biblioteca</h1>
-
+        {{-- Estadísticas --}}
+        <div class="stats">
+            <p><strong>Estudiantes:</strong> {{ $totales['estudiantes'] }}</p>
+            <p><strong>Docentes:</strong> {{ $totales['docentes'] }}</p>
+            <p><strong>Servicios:</strong> {{ $totales['servicios'] }}</p>
+        </div>
         {{-- Gráfico de Sexo --}}
         <img src="{{ $imagenes['graficoSexo'] }}">
         <h3>Gráfico de Sexo</h3>
@@ -36,5 +41,21 @@
         {{-- Gráfico de Área de Conocimiento --}}
         <img src="{{ $imagenes['graficoAreaConocimiento'] }}" style="width: 100%;">
         <h3>Gráfico de Área de Conocimiento</h3>
+
+        {{-- Gráfico de Sala de Atención --}}   
+        <img src="{{ $imagenes['graficoSalaAtencion'] }}" style="width: 100%;">
+        <h3>Gráfico de Sala de Atención</h3>
+
+        {{-- Gráfico de Carrera --}}
+        <img src="{{ $imagenes['graficoCarrera'] }}" style="width: 100%;">
+        <h3>Gráfico de Carrera</h3>
+
+        {{-- Gráfico de Turno --}}
+        <img src="{{ $imagenes['graficoTurno'] }}" style="width: 100%;">
+        <h3>Gráfico de Turno</h3>
+
+        {{-- Gráfico de Sede --}}
+        <img src="{{ $imagenes['graficoSede'] }}" style="width: 100%;">
+        <h3>Gráfico de Sede</h3>
 </body>
 </html>

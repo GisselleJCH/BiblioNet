@@ -20,6 +20,7 @@ class Miembros extends Model
         'area_conocimiento',
         'sede',
         'tipo_miembro',
+        'telefono',
     ];
 
     public function servicios()

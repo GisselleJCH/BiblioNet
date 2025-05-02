@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <td>${reporte.carrera}</td>
                                 <td>${reporte.sede}</td>
                                 <td>${reporte.tipo_miembro}</td>
+                                <td>${reporte.telefono}</td>
                                 <td>${reporte.ingreso}</td>
                                 <td>${reporte.numero_locker}</td>
                                 <td>${reporte.sala_atencion}</td>
@@ -81,13 +82,17 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((data) => {
                 // Actualizar contadores
                 document.getElementById("total-estudiantes").textContent = data.totales.estudiantes;
-                document.getElementById("total-maestros").textContent = data.totales.maestros;
+                document.getElementById("total-docentes").textContent = data.totales.docentes;
                 document.getElementById("total-servicios").textContent = data.totales.servicios;
 
                 // Actualizar gráficos con Chart.js
-                actualizarGrafico("grafico-area-conocimiento", "bar", data.area_conocimiento.labels, data.area_conocimiento.data, "Cantidad por Área de Conocimiento");
-                actualizarGrafico("grafico-sexo", "pie", data.sexo.labels, data.sexo.data, "Cantidad por Sexo");
-                actualizarGrafico("grafico-tipo-servicio", "bar", data.tipo_servicio.labels, data.tipo_servicio.data, "Cantidad por Tipo de Servicio");
+                actualizarGrafico("grafico-area-conocimiento", "bar", data.area_conocimiento.labels, data.area_conocimiento.data, "Área de Conocimiento");
+                actualizarGrafico("grafico-sexo", "pie", data.sexo.labels, data.sexo.data, "Sexo");
+                actualizarGrafico("grafico-tipo-servicio", "bar", data.tipo_servicio.labels, data.tipo_servicio.data, "Tipo de Servicio");
+                actualizarGrafico("grafico-sala-atencion", "bar", data.sala_atencion.labels, data.sala_atencion.data, "Sala de Atención");
+                actualizarGrafico("grafico-carrera", "bar", data.carrera.labels, data.carrera.data, "Carreras");
+                actualizarGrafico("grafico-turno", "pie", data.turno.labels, data.turno.data, "Turno");
+                actualizarGrafico("grafico-sede", "pie", data.sede.labels, data.sede.data, "Sede");
             })
             .catch((error) => console.error("Error al cargar gráficos:", error));
     }
@@ -95,12 +100,23 @@ document.addEventListener("DOMContentLoaded", function () {
     // Función para actualizar un gráfico con Chart.js
     function actualizarGrafico(canvasId, tipo, etiquetas, datos, titulo) {
         const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.error(`El elemento <canvas> con ID "${canvasId}" no existe.`);
+            return;
+        }
+    
         const ctx = canvas.getContext("2d");
     
         // Si ya existe un gráfico para ese canvas, destruirlo
         if (graficos[canvasId]) {
             graficos[canvasId].destroy();
         }
+    
+        // Paleta de colores personalizada
+        const colores = [
+            "#ff5254", "#5cacc4", "#fcb653", "#8cd19d", 
+            "#cee879", "#B3B3B3", "#001C7D", "#C00812"
+        ];
     
         // Crear y almacenar el nuevo gráfico
         graficos[canvasId] = new Chart(ctx, {
@@ -110,12 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 datasets: [{
                     label: titulo,
                     data: datos,
-                    backgroundColor: tipo === "pie"
-                        ? ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"]
-                        : "rgba(75, 192, 192, 0.5)",
-                    borderColor: tipo === "pie"
-                        ? ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"]
-                        : "rgba(75, 192, 192, 1)",
+                    backgroundColor: tipo === "pie" || tipo === "bar" ? colores : "rgba(75, 192, 192, 0.5)",
+                    borderColor: tipo === "pie" || tipo === "bar" ? colores : "rgba(75, 192, 192, 1)",
                     borderWidth: 1,
                 }],
             },
@@ -124,10 +136,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        display: tipo === "pie",
+                        display: tipo === "pie", // Mostrar leyenda solo en gráficos de pastel
+                    },
+                    title: {
+                        display: true, // Mostrar el título
+                        text: titulo, // Título del gráfico
+                        font: {
+                            size: 18,
+                            weight: "bold",
+                        },
+                        color: "#001C7D", // Color del título
+                    },
+                    datalabels: {
+                        color: "#000",
+                        font: {
+                            weight: "bold",
+                        },
+                        formatter: (value, context) => {
+                            const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                            const porcentaje = ((value / total) * 100).toFixed(1);
+                            return `${value} (${porcentaje}%)`;
+                        },
                     },
                 },
             },
+            plugins: [ChartDataLabels], // Habilitar el plugin
         });
     }
 
@@ -175,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const desde = fechaDesde.value;
         const hasta = fechaHasta.value;
 
-        const graficos = ["grafico-area-conocimiento", "grafico-sexo", "grafico-tipo-servicio"];
+        const graficos = ["grafico-area-conocimiento", "grafico-sexo", "grafico-tipo-servicio", "grafico-sala-atencion", "grafico-carrera", "grafico-turno", "grafico-sede"];
         const imagenes = {};
 
         graficos.forEach((id) => {

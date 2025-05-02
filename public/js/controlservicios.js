@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("area_conocimiento").value = miembro.area_conocimiento;
         document.getElementById("sede").value = miembro.sede;
         document.getElementById("tipo_miembro").value = miembro.tipo_miembro; 
+        document.getElementById("telefono").value = miembro.telefono;
         suggestionsContainer.innerHTML = "";
     }
 

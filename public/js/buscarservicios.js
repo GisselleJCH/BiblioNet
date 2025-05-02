@@ -7,15 +7,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const filas = tablaServicios.getElementsByTagName("tr");
 
         for (let i = 0; i < filas.length; i++) {
-            const columnaCarnet = filas[i].getElementsByTagName("td")[0]; // Primera columna (Carnet)
-            if (columnaCarnet) {
-                const textoCarnet = columnaCarnet.textContent || columnaCarnet.innerText;
-                if (textoCarnet.toLowerCase().indexOf(filtro) > -1) {
-                    filas[i].style.display = ""; // Mostrar fila
-                } else {
-                    filas[i].style.display = "none"; // Ocultar fila
+            const columnas = filas[i].getElementsByTagName("td"); // Todas las columnas de la fila
+            let mostrarFila = false;
+
+            // Verificar cada columna relevante (carnet, sala de atención, tipo de servicio, código de computadora, signatura topográfica)
+            for (let j = 0; j < columnas.length; j++) {
+                const textoColumna = columnas[j].textContent || columnas[j].innerText;
+                if (textoColumna.toLowerCase().indexOf(filtro) > -1) {
+                    mostrarFila = true; // Si coincide, mostrar la fila
+                    break;
                 }
             }
+
+            filas[i].style.display = mostrarFila ? "" : "none"; // Mostrar u ocultar la fila
         }
     });
 
