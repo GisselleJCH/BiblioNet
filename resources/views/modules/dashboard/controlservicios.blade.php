@@ -129,7 +129,7 @@
                                     <option value="Entrega de solvencia">Entrega de solvencia</option>
                                     <option value="Usuario con suscripción">Usuario con suscripción</option>
                                     <option value="Capacitación a Usuarios">Capacitación a Usuarios</option>
-                                    <option value="Capacitación a Usuarios">Atención de Usuario (Recepción)</option>
+                                    <option value="Atención de Usuario">Atención de Usuario (Recepción)</option>
                                 </select>
                             </div>
                             <div class="col-md-6">

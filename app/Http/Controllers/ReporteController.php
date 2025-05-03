@@ -123,14 +123,26 @@ class ReporteController extends Controller
             $query->whereBetween('control_servicios.ingreso', [$request->fecha_desde, $request->fecha_hasta]);
         }
 
-        $reportes = $query->get();
+        // Filtrar por tipo y categoría
+        if ($request->filled('tipo') && $request->tipo !== 'todo') {
+            $tipo = $request->tipo;
 
-        if ($returnJson) {
-            return response()->json($reportes);
+            if ($request->filled('categoria') && $request->categoria !== 'todo') {
+                $categoria = $request->categoria;
+                $query->where($tipo, $categoria);
+            } else {
+                $query->whereNotNull($tipo); // Si no hay categoría, filtrar solo por tipo
+            }
         }
 
-        // De lo contrario, devolver la colección directamente
-        return $reportes;
+        $reportes = $query->get();
+
+        // Si no hay datos, devolver un array vacío para evitar errores en los gráficos
+        if ($reportes->isEmpty()) {
+            Log::info('No se encontraron datos para los filtros aplicados.');
+        }
+
+        return $returnJson ? response()->json($reportes) : $reportes;
     }
 
     // Método para generar los datos de los gráficos
@@ -218,6 +230,26 @@ class ReporteController extends Controller
             Log::error("Error al guardar gráficos: " . $e->getMessage());
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
         }
+    }
+
+
+    public function obtenerOpcionesPorTipo(Request $request)
+    {
+        $tipo = $request->input('tipo');
+        $tiposPermitidos = ['signatura_topografica', 'codigo_computadora', 'name'];
+
+        if (!in_array($tipo, $tiposPermitidos)) {
+            return response()->json(['error' => 'Tipo no válido'], 400);
+        }
+
+        $opciones = match ($tipo) {
+            'signatura_topografica' => DB::table('libros')->pluck('signatura_topografica'),
+            'codigo_computadora' => DB::table('computadoras')->pluck('codigo_computadora'),
+            'name' => DB::table('users')->pluck('name'),
+            default => [],
+        };
+
+        return response()->json($opciones);
     }
 
 }

@@ -23,11 +23,32 @@
                 {{ session('success') }}
             </div>
         @endif
-        <div class="botones col-md-4">
+        <div class="botones col-md-2">
             <input type="text" id="fecha-desde" class="form-control" placeholder="Fecha Desde">
         </div>
-        <div class="botones col-md-4">
+        <div class="botones col-md-2">
             <input type="text" id="fecha-hasta" class="form-control" placeholder="Fecha Hasta">
+        </div>
+        <div class="botones col-md-2">
+            <select id="tipo" class="form-select">
+                <option value="seleccionar-tipo">Tipo</option>
+                <option value="todo">Todo</option>
+                <option value="sexo">Sexo</option>
+                <option value="turno">Turno</option>
+                <option value="carrera">Carrera</option>
+                <option value="area_conocimiento">Área de Conocimiento</option>
+                <option value="sede">Sede</option>
+                <option value="tipo_servicio">Tipo de Servicio</option>
+                <option value="sala_atencion">Sala de Atención</option>
+                <option value="signatura_topografica">Signatura Topográfica</option>
+                <option value="codigo_computadora">Código de Computadora</option>
+                <option value="name">Atendido Por</option>
+            </select>
+        </div>
+        <div class="botones col-md-2">
+             <select id="categoria" class="form-select" disabled>
+                <option value="categoria">Categoría</option>
+            </select>
         </div>
         <div class="botones col-md-2">
             <button id="filtrar" class="btn btn-filtrar w-100">Filtrar</button>

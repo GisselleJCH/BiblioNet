@@ -84,6 +84,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/actualizar/{id}', [ServiciosController::class, 'update'])->name('servicios.actualizar');
     Route::delete('/eliminar/{id}', [ServiciosController::class, 'destroy'])->name('servicios.eliminar');
     Route::get('/buscar', [ServiciosController::class, 'buscarServicio'])->name('servicios.buscar');
+    Route::get('/reportes-biblioteca/opciones', [ReporteController::class, 'obtenerOpcionesPorTipo']);
 
     // Rutas para computadoras
     Route::get('/buscar-computadoras', [ComputadorasController::class, 'buscarComputadoras']);
