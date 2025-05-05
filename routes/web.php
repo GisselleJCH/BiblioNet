@@ -56,7 +56,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/{id}', [MiembrosController::class, 'update'])->name('miembros.actualizar');
     Route::delete('/{id}', [MiembrosController::class, 'destroy'])->name('miembros.eliminar');
     Route::get('/usuarios/listado', [UserController::class, 'listado']);
-
+    Route::post('/miembros/importar', [MiembrosController::class, 'importar'])->name('miembros.importar');
+    Route::get('/importaciondatos', [MiembrosController::class, 'importaciondatos'])->name('importaciondatos');
     
     // Rutas para libros
     Route::get('/libros', [LibroController::class, 'index'])->name('libros.index');

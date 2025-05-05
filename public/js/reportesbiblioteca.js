@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Si el tipo es "Todo", la categoría también será "Todo"
             categoriaSelect.disabled = true;
             categoriaSelect.innerHTML = `<option value="todo">Todo</option>`;
-        } else if (["signatura_topografica", "codigo_computadora", "name"].includes(tipo)) {
+        } else if (["signatura_topografica", "codigo_computadora", "name", "carnet"].includes(tipo)) {
             // Obtener opciones dinámicas desde el backend
             fetch(`/reportes-biblioteca/opciones?tipo=${tipo}`)
             .then((response) => {

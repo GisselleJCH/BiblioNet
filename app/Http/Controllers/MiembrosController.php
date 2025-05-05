@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Miembros;
 use Illuminate\Http\Request;
+use App\Imports\MiembrosImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MiembrosController extends Controller
 {
@@ -95,5 +97,25 @@ class MiembrosController extends Controller
             'success' => true,
             'ingresos' => $ingresos,
         ]);
+    }
+
+    public function importaciondatos()
+    {
+        return view('modules.dashboard.importaciondatos');
+    }
+    
+    public function importar(Request $request)
+    {
+        $request->validate([
+            'archivo' => 'required|mimes:xlsx,xls,csv',
+        ]);
+
+        try {
+            Excel::import(new MiembrosImport, $request->file('archivo'));
+
+            return redirect()->back()->with('success', 'Los datos se han importado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Hubo un error al importar los datos: ' . $e->getMessage());
+        }
     }
 }

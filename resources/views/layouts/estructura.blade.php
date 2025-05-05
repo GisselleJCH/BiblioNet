@@ -80,6 +80,7 @@
                         <li><a href="{{ route('devoluciones.index') }}" class="text-submenu">Devoluciones</a></li>
                         <li><a href="{{ route('libros.index') }}" class="text-submenu">Libros</a></li>
                         <li><a href="{{ route('computadoras.index') }}" class="text-submenu">Computadoras</a></li>
+                        <li><a href="{{ route('importaciondatos') }}" class="text-submenu">Datos Miembros</a></li>
                     </ul>
                 </li>
 

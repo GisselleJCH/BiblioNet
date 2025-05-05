@@ -33,6 +33,7 @@
             <select id="tipo" class="form-select">
                 <option value="seleccionar-tipo">Tipo</option>
                 <option value="todo">Todo</option>
+                <option value="carnet">Carnet</option>
                 <option value="sexo">Sexo</option>
                 <option value="turno">Turno</option>
                 <option value="carrera">Carrera</option>

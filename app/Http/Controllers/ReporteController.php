@@ -236,7 +236,7 @@ class ReporteController extends Controller
     public function obtenerOpcionesPorTipo(Request $request)
     {
         $tipo = $request->input('tipo');
-        $tiposPermitidos = ['signatura_topografica', 'codigo_computadora', 'name'];
+        $tiposPermitidos = ['signatura_topografica', 'codigo_computadora', 'name', 'carnet'];
 
         if (!in_array($tipo, $tiposPermitidos)) {
             return response()->json(['error' => 'Tipo no válido'], 400);
@@ -246,6 +246,7 @@ class ReporteController extends Controller
             'signatura_topografica' => DB::table('libros')->pluck('signatura_topografica'),
             'codigo_computadora' => DB::table('computadoras')->pluck('codigo_computadora'),
             'name' => DB::table('users')->pluck('name'),
+            'carnet' => DB::table('miembros')->pluck('carnet'),
             default => [],
         };
 
