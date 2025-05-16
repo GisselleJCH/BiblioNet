@@ -124,15 +124,23 @@ class ReporteController extends Controller
         }
 
         // Filtrar por tipo y categoría
-        if ($request->filled('tipo') && $request->tipo !== 'todo') {
+        $columnas_validas = ['carnet', 'area_conocimiento', 'carrera', 'sede', 'turno', 'sexo', 'tipo_servicio', 'sala_atencion', 'name', 'codigo_computadora', 'signatura_topografica'];	
+
+        if ($request->filled('tipo') && $request
+
+        ->tipo !== 'todo' && in_array($request->tipo, $columnas_validas)) {
             $tipo = $request->tipo;
 
             if ($request->filled('categoria') && $request->categoria !== 'todo') {
-                $categoria = $request->categoria;
+                $categoria = $request
+
+        ->categoria;
                 $query->where($tipo, $categoria);
             } else {
                 $query->whereNotNull($tipo); // Si no hay categoría, filtrar solo por tipo
-            }
+        
+
+        }
         }
 
         $reportes = $query->get();

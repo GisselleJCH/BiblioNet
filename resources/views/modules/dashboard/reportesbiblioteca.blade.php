@@ -31,7 +31,7 @@
         </div>
         <div class="botones col-md-2">
             <select id="tipo" class="form-select">
-                <option value="seleccionar-tipo">Tipo</option>
+                <option value="">Tipo</option>
                 <option value="todo">Todo</option>
                 <option value="carnet">Carnet</option>
                 <option value="sexo">Sexo</option>
